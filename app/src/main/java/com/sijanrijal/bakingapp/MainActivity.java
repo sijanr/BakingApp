@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Fetch and parse JSON from network and add the parsed recipes to the Navigation Drawer
-     * **/
+     **/
     public void getJSONFromNetwork() {
         OkHttpClient client = new OkHttpClient();
 
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Parse the JSON to get the recipes
-     * **/
+     **/
     public void parseJSON(String jsonString) throws IOException {
         Moshi moshi = new Moshi.Builder().build();
         Type type = Types.newParameterizedType(List.class, Recipe.class);
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Set the fragment to display as per the user's recipe choice
-     * **/
+     **/
     private void setFragment(int itemPosition) {
         binding.mainToolbar.setTitle(mRecipeList.get(itemPosition).name);
         mCurrentFragment = new RecipeFragment(itemPosition, this);
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Set the navigation menu items with the recipe names parsed from the JSON object
-     * **/
+     **/
     private void setnavigationMenuItem() {
 
         List<String> navMenuTitle = new ArrayList<>();
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Navigate to the selected fragment from the navigation drawer
-     * **/
+     **/
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         for (Recipe recipe : mRecipeList) {
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      *
-     * **/
+     **/
     @Override
     public void onClick(int recipePosition, int stepPosition, String stepTitle) {
         RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment(recipePosition, stepPosition, stepTitle);
