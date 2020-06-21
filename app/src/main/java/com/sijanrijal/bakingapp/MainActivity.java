@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity
 
     private RecipeFragment mCurrentFragment;
 
+    private boolean mTwoPane;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +64,15 @@ public class MainActivity extends AppCompatActivity
         );
 
         binding.drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+
         binding.navigationView.setNavigationItemSelectedListener(this);
+        actionBarDrawerToggle.syncState();
+
+        if(binding.frameLeftContainer != null) {
+            mTwoPane = true;
+        } else {
+            mTwoPane = false;
+        }
 
         getJSONFromNetwork();
     }
@@ -134,7 +144,12 @@ public class MainActivity extends AppCompatActivity
         binding.mainToolbar.setTitle(mRecipeList.get(itemPosition).name);
         mCurrentFragment = new RecipeFragment(itemPosition, this);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(binding.frameContainer.getId(), mCurrentFragment);
+        if(mTwoPane) {
+            fragmentTransaction.replace(binding.frameLeftContainer.getId(),mCurrentFragment);
+            fragmentTransaction.replace(binding.frameRightContainer.getId(),new Fragment());
+        } else {
+            fragmentTransaction.replace(binding.frameContainer.getId(), mCurrentFragment);
+        }
         fragmentTransaction.commit();
     }
 
@@ -185,9 +200,13 @@ public class MainActivity extends AppCompatActivity
     public void onClick(int recipePosition, int stepPosition, String stepTitle) {
         RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment(recipePosition, stepPosition, stepTitle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame_container, recipeDetailFragment);
-        transaction.addToBackStack("DETAIL");
-        transaction.hide(mCurrentFragment);
+        if(mTwoPane) {
+            transaction.replace(binding.frameRightContainer.getId(), recipeDetailFragment);
+        } else {
+            transaction.add(binding.frameContainer.getId(), recipeDetailFragment);
+            transaction.addToBackStack("DETAIL");
+            transaction.hide(mCurrentFragment);
+        }
         transaction.commit();
     }
 
