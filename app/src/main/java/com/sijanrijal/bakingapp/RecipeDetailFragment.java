@@ -1,5 +1,8 @@
 package com.sijanrijal.bakingapp;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -24,6 +27,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.sijanrijal.bakingapp.databinding.FragmentRecipeDetailBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeDetailFragment extends Fragment {
@@ -164,12 +168,19 @@ public class RecipeDetailFragment extends Fragment {
     }
 
     /**
-     * Sets description and URL of the video to play
+     * Sets description and URL of the video to play and also updates widget
+     * to display the current recipe's ingredients
      **/
     private void setDescription() {
         StringBuilder stringBuilder = new StringBuilder();
         Recipe recipe = MainActivity.mRecipeList.get(mRecipePosition);
         if (mStepPosition < 0) {
+            StringBuilder ingredientString = new StringBuilder();
+            ingredientString
+                    .append(recipe.name)
+                    .append(" ingredients")
+                    .append("\n\n");
+
             List<Recipe.Ingredients> ingredients = recipe.ingredients;
             for (Recipe.Ingredients ingredient : ingredients) {
                 stringBuilder.append("- ")
@@ -178,7 +189,20 @@ public class RecipeDetailFragment extends Fragment {
                         .append(" ")
                         .append(ingredient.ingredient)
                         .append("\n\n");
+                
             }
+
+            //update the widget
+            ingredientString.append(stringBuilder);
+            BakingWidget.ingredient = ingredientString.toString();
+            //set the recipe's ingredients in the widget
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getContext());
+            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(getContext(),BakingWidget.class));
+
+            Intent updateIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+            getContext().sendBroadcast(updateIntent);
+
         } else {
             Recipe.Steps step = recipe.steps.get(mStepPosition);
             stringBuilder.append(step.description);
