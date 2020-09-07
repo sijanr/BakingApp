@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Baking App</string>
+    <string name="openNavDrawer">OPEN_DRAWER</string>
+    <string name="closeNavDrawer">CLOSE_DRAWER</string>
+    <string name="select_a_recipe">Select a recipe</string>
+    <string name="error_message">Could not find data. Please try again later</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="appwidget_text">Select a recipe to view its ingredients</string>
+    <string name="add_widget">Add widget</string>
+</resources>
