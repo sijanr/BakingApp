@@ -1,6 +1,4 @@
 name: Build the app
-description: Build the application
-author: "sijanr"
 
 on:
   push:
