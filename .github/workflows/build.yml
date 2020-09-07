@@ -21,9 +21,9 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build :app:assembleDebug
     - name: Upload APK
       uses: actions/upload-artifact@v2
       with:
-        name: Note
-        path: /apk/
+        name: Bake
+        path: apk/Bake.apk
