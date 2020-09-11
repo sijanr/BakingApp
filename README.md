@@ -1,5 +1,5 @@
 # BakingApp
-It is an android application that displays the step-by-step recipe of 4 bakery products, which are the items that are parsed from a website.
+It is an android application that displays step-by-step recipe of 4 bakery products, which are the items that are parsed from a website. In few of the steps of the recipe where it is difficult to follow along with the help of just text, I've used the ExoPlayer library to implement video playback feature.
 
 <img src="https://github.com/sijanr/BakingApp/blob/master/screenshots/baking_app_1.png" width="250" height="480">&nbsp;&nbsp;<img src="https://github.com/sijanr/BakingApp/blob/master/screenshots/baking_app_2.png" width="250" height="480">&nbsp;&nbsp;<img src="https://github.com/sijanr/BakingApp/blob/master/screenshots/baking_app_3.png" width="250" height="480">&nbsp;&nbsp;<img src="https://github.com/sijanr/BakingApp/blob/master/screenshots/baking_app_4.png" width="250" height="480">&nbsp;&nbsp;
 
