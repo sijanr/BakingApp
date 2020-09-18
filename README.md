@@ -4,7 +4,7 @@ It is an android application that displays step-by-step recipe of 4 bakery produ
 <img src="https://github.com/sijanr/BakingApp/blob/master/screenshots/baking_app_1.png" width="250" height="480">&nbsp;&nbsp;<img src="https://github.com/sijanr/BakingApp/blob/master/screenshots/baking_app_2.png" width="250" height="480">&nbsp;&nbsp;<img src="https://github.com/sijanr/BakingApp/blob/master/screenshots/baking_app_3.png" width="250" height="480">&nbsp;&nbsp;<img src="https://github.com/sijanr/BakingApp/blob/master/screenshots/baking_app_4.png" width="250" height="480">&nbsp;&nbsp;
 
 ## Getting Started
-The application currently supports any android device or emulators running on Android Lollipop to Android 10. If you'd like to try the app, you can grab and load the APK file into your device by downloading the artifact from the latest tests-passed workflow result. Follow the instructions in the setup for more details. Building the app is fairly simple as well as there aren't any changes that you have to commit to the project files before building it.
+The application currently supports any android device or emulators running on Android Lollipop to Android 10. If you'd like to try the app, you can grab and load the APK file into your device by downloading APK file from apk/Bake.apk. Follow the instructions in the setup for more details. Building the app is fairly simple as well as there aren't any changes that you have to commit to the project files before building it.
 
 ### Building the project
 #### Prerequisites
